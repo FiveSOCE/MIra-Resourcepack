@@ -1,0 +1,49 @@
+name: Build Mira Resource Pack
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/**"
+      - "assets/mira/items/**"
+      - "assets/mira/models/**"
+      - "pack.mcmeta"
+      - "model-registry.json"
+      - ".github/workflows/build-pack.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Pyro Axe texture
+        run: python3 tools/generate_pyro_axe.py
+
+      - name: Use Pyro Axe as initial pack icon
+        run: cp assets/mira/textures/item/pyro_axe.png pack.png
+
+      - name: Build distributable pack
+        shell: bash
+        run: |
+          rm -rf dist
+          mkdir -p dist
+          zip -9 -r dist/Mira-Resourcepack-1.21.11.zip pack.mcmeta pack.png assets
+          sha1sum dist/Mira-Resourcepack-1.21.11.zip | awk '{print $1}' > dist/Mira-Resourcepack-1.21.11.zip.sha1
+
+      - name: Commit generated assets
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/mira/textures/item/pyro_axe.png pack.png dist/
+          if git diff --cached --quiet; then
+            echo "Generated assets already current."
+          else
+            git commit -m "Build Pyro Axe resource pack assets"
+            git push
+          fi
