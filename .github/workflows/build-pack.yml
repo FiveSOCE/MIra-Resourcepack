@@ -45,5 +45,6 @@ jobs:
             echo "Generated assets already current."
           else
             git commit -m "Build Pyro Axe resource pack assets"
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
