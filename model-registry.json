@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "models": {
+    "pyro_axe": {
+      "item_model": "mira:pyro_axe",
+      "texture": "mira:item/pyro_axe",
+      "permanent": true,
+      "notes": "Reserved permanently for the signed MiraItems Pyro Axe. Never recycle this identifier."
+    }
+  }
+}
