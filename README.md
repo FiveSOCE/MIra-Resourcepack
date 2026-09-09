@@ -1,3 +1,7 @@
+## 26.2 primary pack
+
+Minecraft 26.2 is now the canonical server resource-pack target. The pack declares resource-pack format 88 with compatibility down to format 75, and the build publishes `dist/Mira-Resourcepack-26.2.zip` as the primary ZIP. A legacy `Mira-Resourcepack-1.21.11.zip` alias is still generated with identical bytes for existing server URLs.
+
 ## 26.2 compatibility fix
 
 The pack now declares explicit compatibility from resource-pack format 75 (Minecraft 1.21.11) through format 88 (Minecraft 26.2). The distribution filename remains unchanged so existing forced-pack URLs keep working.
@@ -6,8 +10,9 @@ The pack now declares explicit compatibility from resource-pack format 75 (Minec
 
 Official resource pack for the FiveSOCE Mira Minecraft plugin ecosystem.
 
-Target: **Minecraft 1.21.11 through 26.2**  
-Resource pack formats: **75 through 88**
+Primary target: **Minecraft 26.2**  
+Compatibility range: **Minecraft 1.21.11 through 26.2**  
+Resource pack format: **88** (minimum supported: **75**)
 
 ## Pyro Axe
 
@@ -65,7 +70,7 @@ GitHub Actions builds:
 
 - `assets/mira/textures/item/pyro_axe.png`
 - `pack.png`
-- `dist/Mira-Resourcepack-1.21.11.zip`
-- `dist/Mira-Resourcepack-1.21.11.zip.sha1`
+- `dist/Mira-Resourcepack-26.2.zip`
+- `dist/Mira-Resourcepack-26.2.zip.sha1`
 
 The ZIP can be hosted directly as the server-forced resource pack.
