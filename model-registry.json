@@ -6,6 +6,66 @@
       "texture": "mira:item/pyro_axe",
       "permanent": true,
       "notes": "Reserved permanently for the signed MiraItems Pyro Axe. Never recycle this identifier."
+    },
+    "excalibur": {
+      "item_model": "mira:excalibur",
+      "texture": "mira:item/excalibur",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for excalibur. Never recycle this identifier."
+    },
+    "lochaber_axe": {
+      "item_model": "mira:lochaber_axe",
+      "texture": "mira:item/lochaber_axe",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for lochaber axe. Never recycle this identifier."
+    },
+    "empower": {
+      "item_model": "mira:empower",
+      "texture": "mira:item/empower",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for empower. Never recycle this identifier."
+    },
+    "voucher_rank": {
+      "item_model": "mira:voucher_rank",
+      "texture": "mira:item/voucher_rank",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for voucher rank. Never recycle this identifier."
+    },
+    "voucher_pinata": {
+      "item_model": "mira:voucher_pinata",
+      "texture": "mira:item/voucher_pinata",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for voucher pinata. Never recycle this identifier."
+    },
+    "voucher_airdrop": {
+      "item_model": "mira:voucher_airdrop",
+      "texture": "mira:item/voucher_airdrop",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for voucher airdrop. Never recycle this identifier."
+    },
+    "voucher_fly": {
+      "item_model": "mira:voucher_fly",
+      "texture": "mira:item/voucher_fly",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for voucher fly. Never recycle this identifier."
+    },
+    "voucher_home_upgrade": {
+      "item_model": "mira:voucher_home_upgrade",
+      "texture": "mira:item/voucher_home_upgrade",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for voucher home upgrade. Never recycle this identifier."
+    },
+    "voucher_jellylegs": {
+      "item_model": "mira:voucher_jellylegs",
+      "texture": "mira:item/voucher_jellylegs",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for voucher jellylegs. Never recycle this identifier."
+    },
+    "voucher_temp_kit": {
+      "item_model": "mira:voucher_temp_kit",
+      "texture": "mira:item/voucher_temp_kit",
+      "permanent": true,
+      "notes": "Permanent MiraItems model for voucher temp kit. Never recycle this identifier."
     }
   }
 }
