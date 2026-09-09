@@ -17,7 +17,7 @@
       "item_model": "mira:lochaber_axe",
       "texture": "mira:item/lochaber_axe",
       "permanent": true,
-      "notes": "Permanent MiraItems model for lochaber axe. Never recycle this identifier."
+      "notes": "Verified 26.2 canonical model mapping for lochaber axe; permanent identifier, do not recycle."
     },
     "empower": {
       "item_model": "mira:empower",
@@ -29,13 +29,13 @@
       "item_model": "mira:voucher_rank",
       "texture": "mira:item/voucher_rank",
       "permanent": true,
-      "notes": "Permanent MiraItems model for voucher rank. Never recycle this identifier."
+      "notes": "Verified 26.2 canonical model mapping for voucher rank; permanent identifier, do not recycle."
     },
     "voucher_pinata": {
       "item_model": "mira:voucher_pinata",
       "texture": "mira:item/voucher_pinata",
       "permanent": true,
-      "notes": "Permanent MiraItems model for voucher pinata. Never recycle this identifier."
+      "notes": "Verified 26.2 canonical model mapping for voucher pinata; permanent identifier, do not recycle."
     },
     "voucher_airdrop": {
       "item_model": "mira:voucher_airdrop",
