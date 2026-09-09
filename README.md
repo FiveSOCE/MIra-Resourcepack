@@ -1,3 +1,7 @@
+## Texture redesign pass
+
+The 26.2 pack now uses full-frame 64x64 Minecraft sprites for Excalibur and Lochaber Axe, a dedicated Empower horn, and simplified 64x64 voucher artwork for rank, Pinata, Airdrop, Home Upgrade, Jelly Legs, and temporary kits. Pyro Axe and Fly voucher visuals remain unchanged.
+
 ## 26.2 primary pack
 
 Minecraft 26.2 is now the canonical server resource-pack target. The pack declares resource-pack format 88 with compatibility down to format 75, and the build publishes `dist/Mira-Resourcepack-26.2.zip` as the primary ZIP. A legacy `Mira-Resourcepack-1.21.11.zip` alias is still generated with identical bytes for existing server URLs.
