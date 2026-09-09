@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
     paths:
-      - "tools/**"
       - "assets/mira/items/**"
       - "assets/mira/models/**"
       - "assets/mira/textures/**"
@@ -22,10 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate Pyro Axe texture
-        run: python3 tools/generate_pyro_axe.py
-
-      - name: Use Pyro Axe as initial pack icon
+      - name: Use Pyro Axe as pack icon
         run: cp assets/mira/textures/item/pyro_axe.png pack.png
 
       - name: Build distributable pack
@@ -38,17 +34,14 @@ jobs:
           cp dist/Mira-Resourcepack-26.2.zip dist/Mira-Resourcepack-1.21.11.zip
           cp dist/Mira-Resourcepack-26.2.zip.sha1 dist/Mira-Resourcepack-1.21.11.zip.sha1
 
-      - name: Commit generated assets
+      - name: Commit generated distribution
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Always regenerate from the latest main so generated binaries never
-          # conflict with an older checkout during rebase.
           git fetch origin main
           git reset --hard origin/main
-          python3 tools/generate_pyro_axe.py
           cp assets/mira/textures/item/pyro_axe.png pack.png
 
           rm -rf dist
@@ -58,9 +51,9 @@ jobs:
           cp dist/Mira-Resourcepack-26.2.zip dist/Mira-Resourcepack-1.21.11.zip
           cp dist/Mira-Resourcepack-26.2.zip.sha1 dist/Mira-Resourcepack-1.21.11.zip.sha1
 
-          git add assets/mira/textures/item/pyro_axe.png pack.png dist/
+          git add pack.png dist/
           if git diff --cached --quiet; then
-            echo "Generated assets already current."
+            echo "Generated distribution already current."
           else
             git commit -m "Build Minecraft 26.2 resource pack assets"
             git push origin HEAD:main
