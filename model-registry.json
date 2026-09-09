@@ -71,25 +71,25 @@
       "item_model": "mira:dark_rider_helmet",
       "texture": "mira:item/dark_rider_helmet",
       "permanent": true,
-      "notes": "Permanent Dark Rider helmet model. Equipped appearance uses mira:dark_rider; never recycle this identifier."
+      "notes": "Permanent MiraItems inventory model. Worn 3D geometry is generated and rendered by MythicArmors; never recycle this identifier."
     },
     "dark_rider_chestplate": {
       "item_model": "mira:dark_rider_chestplate",
       "texture": "mira:item/dark_rider_chestplate",
       "permanent": true,
-      "notes": "Permanent Dark Rider chestplate model. Equipped appearance uses mira:dark_rider; never recycle this identifier."
+      "notes": "Permanent MiraItems inventory model. Worn 3D geometry is generated and rendered by MythicArmors; never recycle this identifier."
     },
     "dark_rider_leggings": {
       "item_model": "mira:dark_rider_leggings",
       "texture": "mira:item/dark_rider_leggings",
       "permanent": true,
-      "notes": "Permanent Dark Rider leggings model. Equipped appearance uses mira:dark_rider; never recycle this identifier."
+      "notes": "Permanent MiraItems inventory model. Worn 3D geometry is generated and rendered by MythicArmors; never recycle this identifier."
     },
     "dark_rider_boots": {
       "item_model": "mira:dark_rider_boots",
       "texture": "mira:item/dark_rider_boots",
       "permanent": true,
-      "notes": "Permanent Dark Rider boots model. Equipped appearance uses mira:dark_rider; never recycle this identifier."
+      "notes": "Permanent MiraItems inventory model. Worn 3D geometry is generated and rendered by MythicArmors; never recycle this identifier."
     }
   }
 }
