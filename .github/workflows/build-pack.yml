@@ -32,8 +32,10 @@ jobs:
         run: |
           rm -rf dist
           mkdir -p dist
-          zip -9 -r dist/Mira-Resourcepack-1.21.11.zip pack.mcmeta pack.png assets
-          sha1sum dist/Mira-Resourcepack-1.21.11.zip | awk '{print $1}' > dist/Mira-Resourcepack-1.21.11.zip.sha1
+          zip -9 -r dist/Mira-Resourcepack-26.2.zip pack.mcmeta pack.png assets
+          sha1sum dist/Mira-Resourcepack-26.2.zip | awk '{print $1}' > dist/Mira-Resourcepack-26.2.zip.sha1
+          cp dist/Mira-Resourcepack-26.2.zip dist/Mira-Resourcepack-1.21.11.zip
+          cp dist/Mira-Resourcepack-26.2.zip.sha1 dist/Mira-Resourcepack-1.21.11.zip.sha1
 
       - name: Commit generated assets
         shell: bash
