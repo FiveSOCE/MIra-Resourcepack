@@ -6,6 +6,7 @@ on:
     paths:
       - "assets/mira/items/**"
       - "assets/mira/models/**"
+      - "assets/mira/equipment/**"
       - "assets/mira/textures/**"
       - "pack.mcmeta"
       - "model-registry.json"
