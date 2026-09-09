@@ -1,9 +1,13 @@
+## 26.2 compatibility fix
+
+The pack now declares explicit compatibility from resource-pack format 75 (Minecraft 1.21.11) through format 88 (Minecraft 26.2). The distribution filename remains unchanged so existing forced-pack URLs keep working.
+
 # Mira Resource Pack
 
 Official resource pack for the FiveSOCE Mira Minecraft plugin ecosystem.
 
-Target: **Minecraft / Paper 1.21.11**  
-Resource pack format: **75**
+Target: **Minecraft 1.21.11 through 26.2**  
+Resource pack formats: **75 through 88**
 
 ## Pyro Axe
 
