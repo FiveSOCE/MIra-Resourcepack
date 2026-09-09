@@ -1,8 +1,8 @@
 {
   "pack": {
-    "pack_format": 75,
+    "pack_format": 88,
     "min_format": 75,
     "max_format": 88,
-    "description": "Mira Resource Pack — Minecraft 1.21.11 through 26.2"
+    "description": "Mira Resource Pack — Minecraft 26.2 (compatible with 1.21.11+)"
   }
 }
