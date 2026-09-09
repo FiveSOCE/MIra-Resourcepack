@@ -42,11 +42,25 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Always regenerate from the latest main so generated binaries never
+          # conflict with an older checkout during rebase.
+          git fetch origin main
+          git reset --hard origin/main
+          python3 tools/generate_pyro_axe.py
+          cp assets/mira/textures/item/pyro_axe.png pack.png
+
+          rm -rf dist
+          mkdir -p dist
+          zip -9 -r dist/Mira-Resourcepack-26.2.zip pack.mcmeta pack.png assets
+          sha1sum dist/Mira-Resourcepack-26.2.zip | awk '{print $1}' > dist/Mira-Resourcepack-26.2.zip.sha1
+          cp dist/Mira-Resourcepack-26.2.zip dist/Mira-Resourcepack-1.21.11.zip
+          cp dist/Mira-Resourcepack-26.2.zip.sha1 dist/Mira-Resourcepack-1.21.11.zip.sha1
+
           git add assets/mira/textures/item/pyro_axe.png pack.png dist/
           if git diff --cached --quiet; then
             echo "Generated assets already current."
           else
-            git commit -m "Build Pyro Axe resource pack assets"
-            git pull --rebase origin main
+            git commit -m "Build Minecraft 26.2 resource pack assets"
             git push origin HEAD:main
           fi
