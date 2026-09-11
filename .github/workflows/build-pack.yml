@@ -8,9 +8,8 @@ on:
       - "assets/mira/models/**"
       - "assets/mira/equipment/**"
       - "assets/mira/textures/**"
-      - ".import/pyro/**"
-      - ".github/scripts/materialize-pyro-assets.sh"
       - "pack.mcmeta"
+      - "pack.png"
       - "model-registry.json"
       - ".github/workflows/build-pack.yml"
   workflow_dispatch:
@@ -23,12 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Materialize Pyro Axe marketplace assets
-        run: bash .github/scripts/materialize-pyro-assets.sh
-
-      - name: Use Pyro Axe as pack icon
-        run: cp assets/mira/textures/item/pyro_axe.png pack.png
 
       - name: Build distributable pack
         shell: bash
@@ -45,23 +38,18 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           git fetch origin main
           git reset --hard origin/main
-          bash .github/scripts/materialize-pyro-assets.sh
-          cp assets/mira/textures/item/pyro_axe.png pack.png
-
           rm -rf dist
           mkdir -p dist
           zip -9 -r dist/Mira-Resourcepack-26.2.zip pack.mcmeta pack.png assets
           sha1sum dist/Mira-Resourcepack-26.2.zip | awk '{print $1}' > dist/Mira-Resourcepack-26.2.zip.sha1
           cp dist/Mira-Resourcepack-26.2.zip dist/Mira-Resourcepack-1.21.11.zip
           cp dist/Mira-Resourcepack-26.2.zip.sha1 dist/Mira-Resourcepack-1.21.11.zip.sha1
-
-          git add pack.png dist/
+          git add dist/
           if git diff --cached --quiet; then
-            echo "Generated distribution already current."
-          else
-            git commit -m "Build Minecraft 26.2 resource pack assets"
-            git push origin HEAD:main
+            echo "Distribution already current."
+            exit 0
           fi
+          git commit -m "Build Minecraft 26.2 resource pack assets"
+          git push origin HEAD:main
