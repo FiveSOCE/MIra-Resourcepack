@@ -1,80 +1,163 @@
-## Texture redesign pass
-
-The 26.2 pack now uses full-frame 64x64 Minecraft sprites for Excalibur and Lochaber Axe, a dedicated Empower horn, and simplified 64x64 voucher artwork for rank, Pinata, Airdrop, Home Upgrade, Jelly Legs, and temporary kits. Pyro Axe and Fly voucher visuals remain unchanged.
-
-## 26.2 primary pack
-
-Minecraft 26.2 is now the canonical server resource-pack target. The pack declares resource-pack format 88 with compatibility down to format 75, and the build publishes `dist/Mira-Resourcepack-26.2.zip` as the primary ZIP. A legacy `Mira-Resourcepack-1.21.11.zip` alias is still generated with identical bytes for existing server URLs.
-
-## 26.2 compatibility fix
-
-The pack now declares explicit compatibility from resource-pack format 75 (Minecraft 1.21.11) through format 88 (Minecraft 26.2). The distribution filename remains unchanged so existing forced-pack URLs keep working.
-
 # Mira Resource Pack
 
-Official resource pack for the FiveSOCE Mira Minecraft plugin ecosystem.
+Official server resource pack for the **Mira Minecraft plugin ecosystem**.
 
-Primary target: **Minecraft 26.2**  
-Compatibility range: **Minecraft 1.21.11 through 26.2**  
-Resource pack format: **88** (minimum supported: **75**)
+The pack supplies custom item models/textures used by authenticated MiraItems and related Mira systems while deliberately leaving ordinary vanilla items unchanged.
 
-## Pyro Axe
+## Compatibility
 
-The Pyro Axe is the first permanent custom MiraItem visual.
+- Primary target: **Minecraft 26.2**
+- Supported compatibility range: **Minecraft 1.21.11 through 26.2**
+- Primary resource-pack format: **88**
+- Minimum supported format: **75**
 
-Permanent model key:
+The build publishes:
 
-```
-mira:pyro_axe
-```
-
-Minecraft resolves that component to:
-
-```
-assets/mira/items/pyro_axe.json
+```text
+dist/Mira-Resourcepack-26.2.zip
+dist/Mira-Resourcepack-26.2.zip.sha1
 ```
 
-which selects the baked handheld model:
+A legacy `Mira-Resourcepack-1.21.11.zip` alias is generated with identical bytes for existing server URLs where configured.
 
+## Design Rule
+
+Mira model keys are assigned only to the specific authenticated/custom item that owns them.
+
+For example, a signed MiraItems Pyro Axe can receive:
+
+```text
+minecraft:item_model = mira:pyro_axe
 ```
-assets/mira/models/item/pyro_axe.json
+
+while a normal Netherite Axe remains completely vanilla.
+
+This is the core resource-pack rule across the suite: **custom Mira content gets custom visuals; ordinary Minecraft items do not get globally replaced.**
+
+## Permanent Model Registry
+
+Permanent model identifiers are treated as collectible ABI. Once a model key ships for a Mira item, that key is not recycled for a different item.
+
+The source of truth is:
+
+```text
+model-registry.json
 ```
 
-using:
+Current registered permanent item models include:
 
+| Item / Family | Model key |
+| --- | --- |
+| Pyro Axe | `mira:pyro_axe` |
+| Excalibur | `mira:excalibur` |
+| Lochaber Axe | `mira:lochaber_axe` |
+| Empower! | `mira:empower` |
+| Rank voucher | `mira:voucher_rank` |
+| Pinata Call voucher | `mira:voucher_pinata` |
+| Airdrop Call voucher | `mira:voucher_airdrop` |
+| Permanent Fly voucher | `mira:voucher_fly` |
+| Home Upgrade voucher | `mira:voucher_home_upgrade` |
+| Jelly Legs voucher | `mira:voucher_jellylegs` |
+| Temporary Kit voucher | `mira:voucher_temp_kit` |
+| Dark Rider Helmet inventory model | `mira:dark_rider_helmet` |
+| Dark Rider Chestplate inventory model | `mira:dark_rider_chestplate` |
+| Dark Rider Leggings inventory model | `mira:dark_rider_leggings` |
+| Dark Rider Boots inventory model | `mira:dark_rider_boots` |
+
+Dark Rider inventory icons/models are permanent Mira identifiers. Worn 3D armor geometry is handled by the MythicArmors pipeline rather than by ordinary vanilla armor-model replacement.
+
+## Crate Key Model
+
+MiraCrates physical keys can use the dedicated model:
+
+```text
+mira:crate_key
 ```
-assets/mira/textures/item/pyro_axe.png
+
+The pack contains the item definition, baked model and custom texture for the crate key so MiraCrates can visually distinguish issued physical keys without replacing vanilla key-carrier items globally.
+
+## Current Visual Pass
+
+The current 26.2 pack includes purpose-built visuals for major Mira collectibles and vouchers, including:
+
+- Pyro Axe
+- Excalibur
+- Lochaber Axe
+- Empower!
+- crate keys
+- rank vouchers
+- Pinata Call vouchers
+- Airdrop Call vouchers
+- Home Upgrade vouchers
+- Jelly Legs vouchers
+- Permanent Fly vouchers
+- temporary kit vouchers
+- Dark Rider armor inventory presentation
+
+The weapon/voucher pass uses Minecraft-friendly full-frame sprites and custom handheld/item definitions while preserving a consistent icy/infernal/fantasy Mira visual language where appropriate to the item.
+
+## Resource Structure
+
+Modern item definitions live under:
+
+```text
+assets/mira/items/
 ```
 
-MiraItems must assign `minecraft:item_model = mira:pyro_axe` **only** to an authenticated/signed Pyro Axe.
+Baked models live under:
 
-There is deliberately no override of any vanilla axe model, so ordinary axes keep their vanilla appearance.
+```text
+assets/mira/models/item/
+```
 
-## Visual direction
+Textures live under:
 
-The generated v1 Pyro Axe is a symmetrical double-sided blackened-steel battle axe with:
+```text
+assets/mira/textures/item/
+```
 
-- infernal orange/red cutting edges
-- ember cracks
-- central fire core
-- long wrapped haft
-- Minecraft-native 64x64 pixel-art silhouette
+A typical model flow is:
 
-The generator is source controlled at `tools/generate_pyro_axe.py`, so the binary texture can be rebuilt deterministically.
+```text
+MiraItems item_model component
+        ↓
+assets/mira/items/<id>.json
+        ↓
+assets/mira/models/item/<id>.json
+        ↓
+assets/mira/textures/item/<id>.png
+```
 
-## Permanent identifiers
+## MiraItems Integration
 
-Model identifiers are collectible ABI. Once a Mira model key ships, it is never reused for a different item.
+MiraItems is responsible for deciding **which authenticated item receives which model key**.
 
-The permanent registry is `model-registry.json`.
+The resource pack does not attempt to identify special items by material alone. This allows custom Mira weapons/vouchers to coexist with ordinary Minecraft items that use the same base material.
 
-## Build
+MiraItems also continuously re-enforces canonical models on valid claimed MiraItems where required so normal inventory handling does not silently strip the intended presentation.
 
-GitHub Actions builds:
+## MythicArmors Integration
 
-- `assets/mira/textures/item/pyro_axe.png`
-- `pack.png`
-- `dist/Mira-Resourcepack-26.2.zip`
-- `dist/Mira-Resourcepack-26.2.zip.sha1`
+Custom 3D worn armor can be produced/rendered through MythicArmors while the Mira pack retains stable inventory-side item identities and supporting assets.
 
-The ZIP can be hosted directly as the server-forced resource pack.
+This keeps inventory presentation and worn-armor geometry as separate concerns instead of forcing vanilla armor replacement across all players/items.
+
+## Building
+
+The repository contains source-controlled assets and generation/build tooling. GitHub Actions produces the distributable 26.2 ZIP and SHA-1 used by the forced server resource-pack configuration.
+
+Important generated/distribution outputs include:
+
+```text
+pack.png
+dist/Mira-Resourcepack-26.2.zip
+dist/Mira-Resourcepack-26.2.zip.sha1
+```
+
+Some artwork/generator sources are intentionally retained in-repo so shipped binary textures can be reproduced deterministically.
+
+## Stability Rule
+
+Do not reuse a shipped permanent Mira model identifier for a different collectible.
+
+New permanent models should be added to `model-registry.json` so item/model identity remains stable across server updates, player inventories and future resource-pack revisions.
